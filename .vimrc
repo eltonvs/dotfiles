@@ -46,6 +46,9 @@ syntax on
 " Strip whitespaces on save
 let g:strip_whitespace_on_save=1
 
+" Set terminal colors to 256 (To Airline Theme works as well)
+set t_Co=256
+
 " Airline Configs
 set laststatus=2                " Always display statusline
 let g:airline_powerline_fonts=1
