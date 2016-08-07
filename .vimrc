@@ -35,6 +35,11 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'javacomplete'
 Plugin 'Yggdroot/indentLine'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mattn/emmet-vim'
+Plugin 'ervandew/supertab'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'othree/html5.vim'
 
 " add plugins before this
 call vundle#end()
@@ -43,8 +48,27 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 
+" To update file automatically
+set autoread
+
+" To search while I'm typing
+set incsearch
+
+" Breakline indent
+set breakindent
+
 " Strip whitespaces on save
 let g:strip_whitespace_on_save=1
+
+" JS, SCSS, SASS, CSS and HTML indent with 2 spaces
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
+autocmd Filetype scss setlocal ts=2 sw=2 sts=0
+autocmd Filetype sass setlocal ts=2 sw=2 sts=0
+autocmd Filetype css setlocal ts=2 sw=2 sts=0
+autocmd Filetype html setlocal ts=2 sw=2 sts=0
+
+" Start NERDTree automatically
+" autocmd VimEnter * NERDTree
 
 " Set terminal colors to 256 (To Airline Theme works as well)
 set t_Co=256
@@ -72,6 +96,9 @@ set omnifunc=syntaxcomplete#Complete
 if has("autocmd")
     autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 endif
+
+" Emmet config
+let g:user_emmet_leader_key='<Tab>'
 
 " YCM
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
@@ -154,5 +181,20 @@ function! s:swap_down()
     call s:swap_lines(n, n + 1)
     exec n + 1
 endfunction
-noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
-noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
+noremap <silent> <C-s-up> :call <SID>swap_up()<CR>
+noremap <silent> <C-s-down> :call <SID>swap_down()<CR>
+inoremap <silent> <C-s-up> <C-O>:call <SID>swap_up()<CR>
+inoremap <silent> <C-s-down> <C-O>:call <SID>swap_down()<CR>
+
+" Save on ctrl + s
+noremap <silent> <C-s> :w<CR>
+inoremap <silent> <C-s> <C-O>:w<CR>
+
+" Exit on ctrl + q
+noremap <silent> <C-q> <C-O>:q!<CR>
+
+" Undo on ctrl + z
+inoremap <silent> <C-z> <C-O>u
+
+" Redo on ctrl + y
+inoremap <silent> <C-y> <C-O><C-r>
