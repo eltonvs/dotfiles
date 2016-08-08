@@ -40,6 +40,10 @@ Plugin 'ervandew/supertab'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'othree/html5.vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'jaromero/vim-monokai-refined'
+Plugin 'StanAngeloff/php.vim'
 
 " add plugins before this
 call vundle#end()
@@ -50,6 +54,12 @@ syntax on
 
 " To update file automatically
 set autoread
+
+" Set terminal colors to 256
+set t_Co=256
+
+" Use Monokai as color theme
+"colorscheme Monokai-Refined
 
 " To search while I'm typing
 set incsearch
@@ -198,3 +208,14 @@ inoremap <silent> <C-z> <C-O>u
 
 " Redo on ctrl + y
 inoremap <silent> <C-y> <C-O><C-r>
+
+" Put at the very end of your .vimrc file.
+function! PhpSyntaxOverride()
+    hi! def link phpDocTags  phpDefine
+    hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
