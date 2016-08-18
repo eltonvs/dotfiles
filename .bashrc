@@ -118,5 +118,5 @@ alias g++="g++ -std=c++11 -Wall"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-# Disable ctrl s
+# Disable ctrl + S
 stty -ixon
