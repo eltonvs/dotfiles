@@ -55,6 +55,9 @@ syntax on
 " To update file automatically
 set autoread
 
+" Use wildmenu
+set wildmenu
+
 " Set terminal colors to 256
 set t_Co=256
 
@@ -79,6 +82,9 @@ autocmd Filetype html setlocal ts=2 sw=2 sts=0
 
 " Start NERDTree automatically
 " autocmd VimEnter * NERDTree
+
+" NERDTree ignore list
+let NERDTreeIgnore = ['\.class$', '\.o$', '\~$']
 
 " Set terminal colors to 256 (To Airline Theme works as well)
 set t_Co=256
