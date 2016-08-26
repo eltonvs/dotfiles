@@ -44,6 +44,7 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'jaromero/vim-monokai-refined'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'airblade/vim-gitgutter'
 
 " add plugins before this
 call vundle#end()
