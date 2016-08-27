@@ -154,6 +154,7 @@ let c_no_curly_error=1
 set showcmd
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set colorcolumn=80
 
 " Show line numbers
 set nu
