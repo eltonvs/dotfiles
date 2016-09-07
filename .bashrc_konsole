@@ -83,9 +83,9 @@ fi
 
 if ${use_color} ; then
 	if [[ ${EUID} == 0 ]] ; then
-		PS1+='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+		PS1+='\[\033[01;31m\]\h:\[\033[01;34m\]\W\$\[\033[00m\] '
 	else
-		PS1+='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+		PS1+='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -95,9 +95,9 @@ if ${use_color} ; then
 else
 	if [[ ${EUID} == 0 ]] ; then
 		# show root@ when we don't have colors
-		PS1+='\u@\h \W \$ '
+		PS1+='\u@\h:\W\$ '
 	else
-		PS1+='\u@\h \w \$ '
+		PS1+='\u@\h:\w\$ '
 	fi
 fi
 
@@ -108,5 +108,12 @@ done
 # Try to keep environment pollution down, EPA loves us.
 unset use_color sh
 
-# My aliases
 alias ll='ls -al'
+alias l='ls'
+alias cd..='cd ..'
+alias ..='cd ..'
+alias arm-gcc='/opt/gcc-linaro-arm-linux-gnueabihf-4.8-2014.03_linux/bin/arm-linux-gnueabihf-gcc'
+alias arm-g++='/opt/gcc-linaro-arm-linux-gnueabihf-4.8-2014.03_linux/bin/arm-linux-gnueabihf-g++'
+
+# show screenfetch when starts to look like a hasker
+screenfetch
