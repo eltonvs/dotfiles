@@ -117,3 +117,6 @@ alias arm-g++='/opt/gcc-linaro-arm-linux-gnueabihf-4.8-2014.03_linux/bin/arm-lin
 
 # show screenfetch when starts to look like a hasker
 screenfetch
+
+# Add ruby bin to PATH
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
