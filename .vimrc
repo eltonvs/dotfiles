@@ -22,6 +22,7 @@ Plugin 'VundleVim/Vundle.vim'
 "
 
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
+Plugin 'javacomplete'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -29,10 +30,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'javacomplete'
 Plugin 'Yggdroot/indentLine'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mattn/emmet-vim'
@@ -45,6 +46,10 @@ Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'jaromero/vim-monokai-refined'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'isRuslan/vim-es6'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'digitaltoad/vim-pug'
 
 " add plugins before this
 call vundle#end()
@@ -75,11 +80,16 @@ set incsearch
 let g:strip_whitespace_on_save=1
 
 " JS, SCSS, SASS, CSS and HTML indent with 2 spaces
-autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
-autocmd Filetype scss setlocal ts=2 sw=2 sts=0
-autocmd Filetype sass setlocal ts=2 sw=2 sts=0
-autocmd Filetype css setlocal ts=2 sw=2 sts=0
-autocmd Filetype html setlocal ts=2 sw=2 sts=0
+if has("autocmd")
+    autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
+    autocmd Filetype json setlocal ts=2 sw=2 sts=0
+    autocmd Filetype scss setlocal ts=2 sw=2 sts=0
+    autocmd Filetype sass setlocal ts=2 sw=2 sts=0
+    autocmd Filetype css setlocal ts=2 sw=2 sts=0
+    autocmd Filetype html setlocal ts=2 sw=2 sts=0
+    autocmd Filetype pug setlocal ts=2 sw=2 sts=0
+    autocmd BufNewFile,BufRead *.pug set syntax=pug
+endif
 
 " Start NERDTree automatically
 " autocmd VimEnter * NERDTree
