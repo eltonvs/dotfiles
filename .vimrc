@@ -45,6 +45,7 @@ Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'jaromero/vim-monokai-refined'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'fatih/vim-go'
 
 " add plugins before this
 call vundle#end()
@@ -76,6 +77,7 @@ let g:strip_whitespace_on_save=1
 
 " JS, SCSS, SASS, CSS and HTML indent with 2 spaces
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
+autocmd Filetype json setlocal ts=2 sw=2 sts=0
 autocmd Filetype scss setlocal ts=2 sw=2 sts=0
 autocmd Filetype sass setlocal ts=2 sw=2 sts=0
 autocmd Filetype css setlocal ts=2 sw=2 sts=0
@@ -227,3 +229,11 @@ augroup phpSyntaxOverride
     autocmd!
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
+
+" GO settings
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
