@@ -129,7 +129,7 @@ endif
 let g:user_emmet_leader_key='<Tab>'
 
 " YCM
-let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist=['~/.vim/*']
 let g:ycm_always_populate_location_list = 0
 let g:ycm_auto_trigger=1
