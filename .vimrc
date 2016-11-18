@@ -119,6 +119,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs=1
 
+" Syntastic C++
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
 " Omnifunc
 set omnifunc=syntaxcomplete#Complete
 if has("autocmd")
