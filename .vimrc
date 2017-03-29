@@ -43,7 +43,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'othree/html5.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'jaromero/vim-monokai-refined'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'fatih/vim-go'
@@ -53,6 +52,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'python-mode/python-mode'
+Plugin 'flazz/vim-colorschemes'
 
 " add plugins before this
 call vundle#end()
@@ -70,8 +70,8 @@ set wildmenu
 " Set terminal colors to 256
 set t_Co=256
 
-" Use Monokai as color theme
-"colorscheme Monokai-Refined
+" Set Color Theme
+colorscheme monokain
 
 " Move across windows more easily
 nnoremap <C-J> <C-W><C-J>
