@@ -51,11 +51,13 @@ Plugin 'isRuslan/vim-es6'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'digitaltoad/vim-pug'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'python-mode/python-mode'
 
 " add plugins before this
 call vundle#end()
 
-" now (after vundle finished) it is save to turn filetype plugins on
+" After vundle finished it's safe to turn filetype plugins on
 filetype plugin indent on
 syntax on
 
@@ -70,6 +72,36 @@ set t_Co=256
 
 " Use Monokai as color theme
 "colorscheme Monokai-Refined
+
+" Move across windows more easily
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"
+" Python Lint
+"
+let g:pymode_rope = 0
+
+" Linting
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+" Auto check on save
+let g:pymode_lint_write = 1
+
+" Support virtualenv
+let g:pymode_virtualenv = 1
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Don't autofold code
+let g:pymode_folding = 0
+
 
 " To search while I'm typing
 set incsearch
@@ -88,6 +120,7 @@ if has("autocmd")
     autocmd Filetype sass setlocal ts=2 sw=2 sts=0
     autocmd Filetype css setlocal ts=2 sw=2 sts=0
     autocmd Filetype html setlocal ts=2 sw=2 sts=0
+    autocmd Filetype jinja2 setlocal ts=2 sw=2 sts=0
     autocmd Filetype pug setlocal ts=2 sw=2 sts=0
     autocmd BufNewFile,BufRead *.pug set syntax=pug
 endif
@@ -96,7 +129,7 @@ endif
 " autocmd VimEnter * NERDTree
 
 " NERDTree ignore list
-let NERDTreeIgnore = ['\.class$', '\.o$', '\~$']
+let NERDTreeIgnore = ['\.class$', '\.o$', '\~$', '\.pyc$', '\.swp$']
 
 " Set terminal colors to 256 (To Airline Theme works as well)
 set t_Co=256
