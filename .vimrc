@@ -43,6 +43,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'othree/html5.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'jaromero/vim-monokai-refined'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'fatih/vim-go'
@@ -52,7 +53,10 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'python-mode/python-mode'
-Plugin 'flazz/vim-colorschemes'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'wavded/vim-stylus'
 
 " add plugins before this
 call vundle#end()
@@ -70,8 +74,8 @@ set wildmenu
 " Set terminal colors to 256
 set t_Co=256
 
-" Set Color Theme
-colorscheme monokain
+" Use Monokai as color theme
+"colorscheme Monokai-Refined
 
 " Move across windows more easily
 nnoremap <C-J> <C-W><C-J>
@@ -115,6 +119,7 @@ let g:strip_whitespace_on_save=1
 " JS, SCSS, SASS, CSS and HTML indent with 2 spaces
 if has("autocmd")
     autocmd Filetype javascript setlocal ts=2 sw=2 sts=0
+    autocmd Filetype typescript setlocal ts=2 sw=2 sts=0
     autocmd Filetype json setlocal ts=2 sw=2 sts=0
     autocmd Filetype scss setlocal ts=2 sw=2 sts=0
     autocmd Filetype sass setlocal ts=2 sw=2 sts=0

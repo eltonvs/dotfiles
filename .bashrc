@@ -75,9 +75,9 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias ls='ls --color=auto --group-directories-first'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -120,3 +120,25 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Disable ctrl + S
 stty -ixon
+
+export PATH=/home/elton/.gem/ruby/2.4.0/bin:$PATH
+
+source "/usr/bin/virtualenvwrapper.sh"
+
+# Simple script to easily activate a virtualenv
+activate() {
+    source "/home/elton/.virtualenvs/$1/bin/activate"
+}
+
+activate-conda() {
+    source "/opt/anaconda/bin/activate" root
+}
+
+deactivate-conda() {
+    source "/opt/anaconda/bin/deactivate" root
+}
+
+# Simple script to easily call script to update/clear packages
+upkg() {
+    sudo ~/scripts/daily_update.sh
+}

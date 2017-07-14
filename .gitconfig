@@ -4,3 +4,5 @@
 [user]
 	name = Elton Viana
 	email = eltonvs@outlook.com
+[push]
+	default = current
