@@ -27,4 +27,8 @@ MiscMouseWheelZoom=TRUE
 MiscMiddleClickOpensUri=FALSE
 MiscDefaultWorkingDir=
 MiscRewrapOnResize=TRUE
+MiscCopyOnSelect=FALSE
+MiscUseShiftArrowsToScroll=FALSE
+MiscSlimTabs=FALSE
+ScrollingUnlimited=TRUE
 
