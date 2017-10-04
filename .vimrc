@@ -16,47 +16,56 @@ call vundle#begin()
 " let Vundle manage Vundle (this is required)
 Plugin 'VundleVim/Vundle.vim'
 
-" to install a plugin add it here and run :PluginInstall.
-" to update the plugins run :PluginInstall! or :PluginUpdate
-" to delete a plugin remove it here and run :PluginClean
-"
-
-" YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
-Plugin 'javacomplete'
+" Essentials:
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Yggdroot/indentLine'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'mattn/emmet-vim'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ervandew/supertab'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'othree/html5.vim'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'jaromero/vim-monokai-refined'
-Plugin 'StanAngeloff/php.vim'
 Plugin 'airblade/vim-gitgutter'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'jaromero/vim-monokai-refined'
+" Java:
+Plugin 'javacomplete'
+" C++:
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'Valloric/YouCompleteMe'
+" Go:
 Plugin 'fatih/vim-go'
-Plugin 'isRuslan/vim-es6'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'leafgarland/typescript-vim'
+" Pug:
 Plugin 'digitaltoad/vim-pug'
+" PHP:
+Plugin 'StanAngeloff/php.vim'
+"Plugin '2072/PHP-Indenting-for-VIm'
+" Python:
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'python-mode/python-mode'
+" Ruby:
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-rails'
+" Front End:
+Plugin 'mattn/emmet-vim'
+Plugin 'wavded/vim-stylus'
+Plugin 'othree/html5.vim'
+Plugin 'cakebaker/scss-syntax.vim'
+" JavaScript:
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
-Plugin 'wavded/vim-stylus'
+Plugin 'isRuslan/vim-es6'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'posva/vim-vue'
 
 " add plugins before this
 call vundle#end()
@@ -125,10 +134,16 @@ if has("autocmd")
     autocmd Filetype sass setlocal ts=2 sw=2 sts=0
     autocmd Filetype css setlocal ts=2 sw=2 sts=0
     autocmd Filetype html setlocal ts=2 sw=2 sts=0
+    autocmd Filetype eruby setlocal ts=2 sw=2 sts=0
     autocmd Filetype jinja2 setlocal ts=2 sw=2 sts=0
     autocmd Filetype pug setlocal ts=2 sw=2 sts=0
+    autocmd Filetype ruby setlocal ts=2 sw=2 sts=0
     autocmd BufNewFile,BufRead *.pug set syntax=pug
+    autocmd FileType vue syntax sync fromstart
+    autocmd BufRead,BufNewFile *.vue setlocal ts=2 sw=2 filetype=vue.html.javascript.css
 endif
+
+let g:vue_disable_pre_processors=1
 
 " Start NERDTree automatically
 " autocmd VimEnter * NERDTree
@@ -155,7 +170,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs=1
+let g:syntastic_enable_signs = 1
+let g:syntastic_ruby_mri_exec = '/usr/share/rvm/rubies/ruby-2.4.0/bin/ruby'
+let g:syntastic_ruby_checkers = ['rubocop', 'rubylint']
 
 " Syntastic C++
 let g:syntastic_cpp_compiler = 'g++'
