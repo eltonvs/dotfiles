@@ -6,3 +6,5 @@
 	email = eltonvs@outlook.com
 [push]
 	default = current
+[url "https://"]
+	insteadOf = git://
