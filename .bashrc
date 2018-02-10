@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -120,25 +120,3 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Disable ctrl + S
 stty -ixon
-
-export PATH=/home/elton/.gem/ruby/2.4.0/bin:$PATH
-
-source "/usr/bin/virtualenvwrapper.sh"
-
-# Simple script to easily activate a virtualenv
-activate() {
-    source "/home/elton/.virtualenvs/$1/bin/activate"
-}
-
-activate-conda() {
-    source "/opt/anaconda/bin/activate" root
-}
-
-deactivate-conda() {
-    source "/opt/anaconda/bin/deactivate" root
-}
-
-# Simple script to easily call script to update/clear packages
-upkg() {
-    sudo ~/scripts/daily_update.sh
-}

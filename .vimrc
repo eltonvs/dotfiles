@@ -31,6 +31,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jiangmiao/auto-pairs'
@@ -59,6 +60,9 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
+" Elixir:
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
 " Front End:
 Plugin 'mattn/emmet-vim'
 Plugin 'wavded/vim-stylus'
@@ -110,6 +114,9 @@ set wildignore=*.class,*.o,*~,*.pyc,.git,node_modules   " Ignore some files
 
 " Use ; as : in normal mode
 nnoremap ; :
+
+" Remap Leader to ","
+let mapleader = ","
 
 " Move across windows more easily
 nnoremap <C-J> <C-W><C-J>
@@ -245,6 +252,21 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let b:ale_cpp_clang_options = ' -std=c++11 -stdlib=libc++ -Wall'
+"--
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_column_always = 1
+
+augroup AleGroup
+    autocmd!
+    autocmd User ALELint call TouchOpenFile()
+augroup END
+
+func! TouchOpenFile()
+    let g:ale_enabled = 0
+    sleep 500m
+    w
+    let g:ale_enabled = 1
+endfunc
 
 "
 " GO settings
