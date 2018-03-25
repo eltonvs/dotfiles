@@ -88,6 +88,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias svim='sudo -E vim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -117,6 +118,17 @@ fi
 alias g++="g++ -std=c++11 -Wall"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.local/bin" # Add ~/.local/bin to PATH
+export PATH="$PATH:$HOME/.cabal/bin"
+export ANDROID_HOME="/home/elton/Android/Sdk/"
 
 # Disable ctrl + S
 stty -ixon
+
+conda-activate() {
+    source "/opt/anaconda/bin/activate" root
+}
+
+conda-deactivate() {
+    source "/opt/anaconda/bin/deactivate" root
+}
