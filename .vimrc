@@ -41,6 +41,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ervandew/supertab'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'godlygeek/tabular'
 " Java:
 Plugin 'javacomplete'
 " C++:
@@ -76,6 +77,9 @@ Plugin 'isRuslan/vim-es6'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'posva/vim-vue'
+" Haskell
+Plugin 'alx741/vim-hindent'
+Plugin 'neovimhaskell/haskell-vim'
 
 call vundle#end()
 " After vundle finished it's safe to turn filetype plugins on
@@ -191,6 +195,7 @@ if has("autocmd")
     au Filetype eruby setlocal ts=2 sw=2 sts=0
     au Filetype jinja2 setlocal ts=2 sw=2 sts=0
     au Filetype ruby setlocal ts=2 sw=2 sts=0
+    au Filetype haskell setlocal ts=2 sw=2 sts=0
     au Filetype java setlocal omnifunc=javacomplete#Complete
     au Filetype pug setlocal ts=2 sw=2 sts=0
     au FileType vue syntax sync fromstart
@@ -251,7 +256,10 @@ let g:airline_theme='luna'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let b:ale_cpp_clang_options = ' -std=c++11 -stdlib=libc++ -Wall'
+" C++
+let g:ale_cpp_clang_options = ' -std=c++11 -stdlib=libc++ -Wall'
+" Haskell
+let g:ale_haskell_ghc_options = '-dynamic -fno-code -v0'
 "--
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
@@ -314,6 +322,14 @@ let g:ycm_filetype_blacklist={
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 let c_no_curly_error=1
+
+"
+" Tabular
+"
+let g:haskell_tabular = 1
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
 
 "
 " PHP Syntax Override
