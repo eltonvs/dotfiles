@@ -2,26 +2,25 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/elton/.oh-my-zsh
+export ZSH="/Users/eltonviana/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
 ZSH_THEME="obraun"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
@@ -49,18 +48,32 @@ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  npm
+  colored-man
+  colorize
+  pip
+  python
+  brew
+  osx
+  zsh-syntax-highlighting
+  docker
+  django
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -94,11 +107,51 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias conda-activate="source \"/opt/anaconda/bin/activate\" root"
-alias conda-deactivate="source \"/opt/anaconda/bin/deactivate\" root"
+# ZSH Async
+if [[ ! -a ~/.zsh-async ]]; then
+  git clone git@github.com:mafredri/zsh-async.git ~/.zsh-async
+fi
+source ~/.zsh-async/async.zsh
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+function _load_nvm() {
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
+# tabtab source for serverless package
+function _load_tabtab_serverless() {
+    local TABTAB_COMPLETIONS_PATH="$HOME/.nvm/versions/node/$(nvm current)/lib/node_modules/serverless/node_modules/tabtab/.completions"
+    # uninstall by removing these lines or running `tabtab uninstall serverless`
+    [[ -f "$TABTAB_COMPLETIONS_PATH/serverless.zsh" ]] && . "$TABTAB_COMPLETIONS_PATH/serverless.zsh"
+    # tabtab source for sls package
+    # uninstall by removing these lines or running `tabtab uninstall sls`
+    [[ -f "$TABTAB_COMPLETIONS_PATH/sls.zsh" ]] && . "$TABTAB_COMPLETIONS_PATH/sls.zsh"
+}
+
+function _load_node_things() {
+    _load_nvm && _load_tabtab_serverless
+}
+
+# Initialize async worker (for load_node_things)
+async_start_worker nvm_worker -n
+async_register_callback nvm_worker _load_node_things
+async_job nvm_worker sleep 0.1
+
+# Pipenv
+eval "$(pipenv --completion)"
+
+# Conda snippets
+conda2-activate() {
+    source $HOME/miniconda2/bin/activate
+}
+alias c2activate='conda2-activate'
+
+conda2-deactivate() {
+    source $HOME/miniconda2/bin/deactivate
+}
+alias c2deactivate='conda2-deactivate'
 
 # Open vim with sudo using the current profile (.vimrc)
 alias svim='sudo -E vim'
-
-# Set c++11 as default compiler
-alias g++="g++ -std=c++11 -Wall"
