@@ -142,7 +142,7 @@ async_job nvm_worker sleep 0.1
 # Pipenv
 eval "$(pipenv --completion)"
 
-# Conda snippets
+# Conda 2 snippets
 conda2-activate() {
     source $HOME/miniconda2/bin/activate
 }
@@ -153,5 +153,30 @@ conda2-deactivate() {
 }
 alias c2deactivate='conda2-deactivate'
 
+# Conda 3 snippets
+conda3-activate() {
+    source $HOME/miniconda3/bin/activate
+}
+alias c3activate='conda3-activate'
+
+conda3-deactivate() {
+    source $HOME/miniconda3/bin/deactivate
+}
+alias c3deactivate='conda3-deactivate'
+
 # Open vim with sudo using the current profile (.vimrc)
 alias svim='sudo -E vim'
+
+# Remove squashed branches
+alias gbdaa='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+alias gbddaa='git checkout -q develop && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base develop $branch) && [[ $(git cherry develop $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+
+# rbenv
+# eval "$(rbenv init -)"
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+# [[ -f /Users/eltonviana/.nvm/versions/node/v8.13.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/eltonviana/.nvm/versions/node/v8.13.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+# configure ghc
+# source ~/.ghcup/env
