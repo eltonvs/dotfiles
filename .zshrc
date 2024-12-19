@@ -22,6 +22,7 @@ fi
 
 
 # Open vim with sudo using the current profile (.vimrc)
+alias vim='nvim'
 alias svim='sudo -E vim'
 
 # Remove squashed branches
@@ -43,3 +44,6 @@ export PATH=$PATH:$JAVA_HOME/bin
 
 # Local SAM alias
 alias lsam='DOCKER_HOST=unix://$HOME/.docker/run/docker.sock sam'
+
+# Golang
+export PATH=$PATH:/usr/local/go/bin
